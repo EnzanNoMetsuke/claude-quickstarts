@@ -5,21 +5,22 @@ Your job is to set up the foundation for all future coding agents.
 
 ### FIRST: Read the Project Specification
 
-Start by reading `app_spec.txt` in your working directory. This file contains
-the complete specification for what you need to build. Read it carefully
-before proceeding.
+Start by reading `app_spec.txt` or `SPEC.md`, depending on which file exists
+in your working directory. This file contains the complete specification for
+what you need to build. Read it carefully before proceeding.
 
 ### CRITICAL FIRST TASK: Create feature_list.json
 
-Based on `app_spec.txt`, create a file called `feature_list.json` with 200 detailed
-end-to-end test cases. This file is the single source of truth for what
-needs to be built.
+Based on `app_spec.txt`/`SPEC.md`, create a file called `feature_list.json`
+with detailed end-to-end test cases. This file is the single source of truth
+for what needs to be built.
 
 **Format:**
 ```json
 [
   {
     "category": "functional",
+    "priority": "high",
     "description": "Brief description of the feature and what this test verifies",
     "steps": [
       "Step 1: Navigate to relevant page",
@@ -30,6 +31,7 @@ needs to be built.
   },
   {
     "category": "style",
+    "priority": "medium",
     "description": "Brief description of UI/UX requirement",
     "steps": [
       "Step 1: Navigate to page",
@@ -37,16 +39,28 @@ needs to be built.
       "Step 3: Verify visual requirements"
     ],
     "passes": false
+  },
+  {
+    "category": "non-functional",
+    "priority": "low",
+    "description: "Brief description of the requirement and what this test verifies",
+    "steps": [
+      "Step 1: Change to project root directory",
+      "Step 2: bun run lint",
+      "Step 3: Verify that linter exits cleanly with no issues reported"
+    ],
+    "passes": false
   }
 ]
 ```
 
 **Requirements for feature_list.json:**
-- Minimum 200 features total with testing steps for each
-- Both "functional" and "style" categories
-- Mix of narrow tests (2-5 steps) and comprehensive tests (10+ steps)
-- At least 25 tests MUST have 10+ steps each
+- Testing steps for each feature
+- Both "functional" and "style" categories; use "non-functional" only where applicable
+- Use narrow tests (2-5 steps) for simple features and comprehensive tests (10+ steps)
+  for complex ones
 - Order features by priority: fundamental features first
+  (i.e. "high" -> "medium" -> "low" priority)
 - ALL tests start with "passes": false
 - Cover every feature in the spec exhaustively
 
@@ -65,12 +79,12 @@ set up and run the development environment. The script should:
 2. Start any necessary servers or services
 3. Print helpful information about how to access the running application
 
-Base the script on the technology stack specified in `app_spec.txt`.
+Base the script on the technology stack specified in `app_spec.txt`/`SPEC.md`.
 
 ### THIRD TASK: Initialize Git
 
 Create a git repository and make your first commit with:
-- feature_list.json (complete with all 200+ features)
+- feature_list.json (complete with all features from the spec)
 - init.sh (environment setup script)
 - README.md (project overview and setup instructions)
 
@@ -78,13 +92,13 @@ Commit message: "Initial setup: feature_list.json, init.sh, and project structur
 
 ### FOURTH TASK: Create Project Structure
 
-Set up the basic project structure based on what's specified in `app_spec.txt`.
+Set up the basic project structure based on what's specified in `app_spec.txt`/`SPEC.md`.
 This typically includes directories for frontend, backend, and any other
 components mentioned in the spec.
 
 ### OPTIONAL: Start Implementation
 
-If you have time remaining in this session, you may begin implementing
+If you unused space in your context remaining in this session, you may begin implementing
 the highest-priority features from feature_list.json. Remember:
 - Work on ONE feature at a time
 - Test thoroughly before marking "passes": true
@@ -94,7 +108,7 @@ the highest-priority features from feature_list.json. Remember:
 
 Before your context fills up:
 1. Commit all work with descriptive messages
-2. Create `claude-progress.txt` with a summary of what you accomplished
+2. Create `agent-progress.md` with a summary of what you accomplished
 3. Ensure feature_list.json is complete and saved
 4. Leave the environment in a clean, working state
 
